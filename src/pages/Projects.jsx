@@ -6,10 +6,12 @@ import { LaunchOutlined } from '@mui/icons-material'
 const Projects = () => {
   const theme = useTheme()
   return (
-    <Container maxWidth="lg" >
-      <h1 style={{textAlign:'center',padding:'200px'}}>
+    <Container maxWidth="lg">
+      <Box sx={{textAlign:'center'}} my={10}>
+      <h1>
         Comming soon
       </h1>
+      </Box>
     </Container>
   )
 }
