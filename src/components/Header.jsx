@@ -1,11 +1,12 @@
 import { Box, Container, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Stack, Typography, useTheme } from '@mui/material'
-import React, { useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Appbarstyle, MaterialUISwitch, Toolbarstyle } from '../theme/helpertheme'
 import MenuIcon from '@mui/icons-material/Menu';
-import {CloseOutlined , WbIncandescentOutlined, ListAltOutlined, CallOutlined, AccountCircleOutlined, PsychologyAltOutlined} from '@mui/icons-material';
+import { CloseOutlined, WbIncandescentOutlined, ListAltOutlined, CallOutlined, AccountCircleOutlined, PsychologyAltOutlined } from '@mui/icons-material';
 import { ThemeContext } from '../theme/theme';
 import { Link as ScrollLink } from 'react-scroll';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';  // Import AOS styles
 
 export const Header = () => {
     const theme = useTheme()
@@ -13,6 +14,15 @@ export const Header = () => {
         right: false,
     });
     const { toggleTheme } = useContext(ThemeContext)
+
+    // Initialize AOS
+    useEffect(() => {
+        AOS.init({
+            duration: 1200,
+            once: true,  // Animation happens only once
+        });
+    }, []);
+
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -27,12 +37,12 @@ export const Header = () => {
             role="presentation"
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <ListSubheader  sx={{background: theme?.palette?.mode === "dark" && "#000000" }}>
+            <ListSubheader  sx={{background: theme?.palette?.mode === "dark" && "#000000" }} data-aos="fade-down">
                 <Stack direction={"row"} justifyContent={"space-between"} mt={2} mb={2}>
-                    <Box sx={{ display: "flex" }} >
+                    <Box sx={{ display: "flex" }}>
 
-                        <Box  mt={1.3} className="Box-head-menu-1" sx={{ backgroundColor: theme?.palette?.mode === "light" ? "#3178c6" : "#FFFFFF" }}>
-                            <Typography variant='h4' className='h4-menuvariant' component={"h1"} mt={0.2}> S</Typography>
+                        <Box mt={1.3} className="Box-head-menu-1" sx={{ backgroundColor: theme?.palette?.mode === "light" ? "#3178c6" : "#FFFFFF" }}>
+                            <Typography variant='h4' className='h4-menuvariant' component={"h1"} mt={0.2}>S</Typography>
                         </Box>
                         <Typography variant='h3' className='h3-menuvariant' mt={1.6} ml={0.4}>
                             hibu
@@ -44,11 +54,11 @@ export const Header = () => {
                     </Box>
                 </Stack>
             </ListSubheader>
-            <Divider sx={{background: theme?.palette?.mode === "dark" && "#FFF"}} variant="middle" />
+            <Divider sx={{background: theme?.palette?.mode === "dark" && "#FFF"}} variant="middle" data-aos="fade-up"/>
             <List>
                 {['About', 'Skills', 'Experience', 'Projects', "Contact"].map((text, index) => (
 
-                    <ListItem key={text} disablePadding>
+                    <ListItem key={text} disablePadding data-aos="fade-right" data-aos-delay={index * 100}>
                         <ScrollLink to={text} smooth={true} duration={500} className='style-pointer'>
                             <ListItemButton onClick={toggleDrawer(anchor, false)}>
                                 <ListItemIcon sx={{minWidth: "35px"}}>
@@ -72,28 +82,26 @@ export const Header = () => {
 
                 ))}
             </List>
-            <Divider sx={{background: theme?.palette?.mode === "dark" && "#FFF" }} variant="middle" />
+            <Divider sx={{background: theme?.palette?.mode === "dark" && "#FFF" }} variant="middle" data-aos="fade-up" />
 
-            <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"} mt={1} pr={2} pl={2}>
+            <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"} mt={1} pr={2} pl={2} data-aos="zoom-in">
                 <Box>
                     <Typography variant="h6">Switch Theme</Typography>
                 </Box>
                 <MaterialUISwitch onClick={toggleTheme} />
             </Stack>
 
-            <div className='custom-download-cv'>
+            <div className='custom-download-cv' data-aos="fade-in">
               <a href="/resume.pdf" download className='atagfooter'>
                 <Typography variant='body1' className='body1-menu-variant' textAlign={"center"} color={"#FFFFFF"}>Download CV</Typography>
                 </a>
             </div>
-
-
         </Box>
     );
 
     return (
         <>
-            <Appbarstyle sx={{ background: theme?.palette?.mode === "light" ? "#FFF" : "#000000" }} component="nav">
+            <Appbarstyle sx={{ background: theme?.palette?.mode === "light" ? "#FFF" : "#000000" }} component="nav" data-aos="fade-down">
                 <Container maxWidth="lg" sx={{ background: theme?.palette?.mode === "light" ? "#FFF" : "#000000" }}>
                     <Toolbarstyle sx={{ background: theme?.palette?.mode === "light" ? "#FFF" : "#000000" }} >
                         <Box sx={{ display: "flex" }}>
@@ -104,7 +112,7 @@ export const Header = () => {
                               Shibu
                             </Typography>
                         </Box>
-                        <Box sx={{ display: { xs: 'none', sm: 'none', md: "flex", lg: "flex" }, }} >
+                        <Box sx={{ display: { xs: 'none', sm: 'none', md: "flex", lg: "flex" }, }}>
                             <Stack direction="row"
                                 justifyContent="space-between"
                                 alignItems={"center"}
@@ -112,29 +120,28 @@ export const Header = () => {
                                 gap={5}
                             >
                                 <ScrollLink to="About" smooth={true} duration={500} className='style-pointer'>
-                                    <Typography variant='h6'>About</Typography>
+                                    <Typography variant='h6' data-aos="fade-right">About</Typography>
                                 </ScrollLink>
                                 <ScrollLink to="Skills" smooth={true} duration={500} className='style-pointer'>
-                                    <Typography variant='h6'>Skills</Typography>
+                                    <Typography variant='h6' data-aos="fade-right" data-aos-delay="100">Skills</Typography>
                                 </ScrollLink>
 
                                 <ScrollLink to="Experience" smooth={true} duration={500} className='style-pointer'>
-                                    <Typography variant='h6'>Experience</Typography>
+                                    <Typography variant='h6' data-aos="fade-right" data-aos-delay="200">Experience</Typography>
                                 </ScrollLink>
                                 <ScrollLink to="Projects" smooth={true} duration={500} className='style-pointer'>
-                                    <Typography variant='h6'>Projects</Typography>
+                                    <Typography variant='h6' data-aos="fade-right" data-aos-delay="300">Projects</Typography>
                                 </ScrollLink>
 
                                 <ScrollLink to="Contact" smooth={true} duration={500} className='style-pointer'>
-                                    <Typography variant='h6'>Contact</Typography>
+                                    <Typography variant='h6' data-aos="fade-right" data-aos-delay="400">Contact</Typography>
                                 </ScrollLink>
                                 <Stack direction="row" alignItems={"center"} gap={3}>
-                                    
                                     <MaterialUISwitch onClick={toggleTheme}/>
-                                    <div className='custom-download-cv-web' style={{ backgroundColor: theme?.palette?.mode === "light" ? "#3178C6" : "#FFFFFF" }}>
+                                    <div className='custom-download-cv-web' style={{ backgroundColor: theme?.palette?.mode === "light" ? "#3178C6" : "#FFFFFF" }} data-aos="fade-left">
                                     <a href="/resume.pdf" download className='atagfooter'>
                                         <Typography variant='body1' className='body1-menu-variant' textAlign={"center"} color={theme?.palette?.mode === "light" ? "#FFFFFF" : "#000000"}>DownloadCV</Typography>
-                                        </a>
+                                    </a>
                                     </div>
                                 </Stack>
                             </Stack>
@@ -159,8 +166,5 @@ export const Header = () => {
             </Appbarstyle>
 
         </>
-
     )
-
 }
-
