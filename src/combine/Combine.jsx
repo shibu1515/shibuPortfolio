@@ -16,7 +16,7 @@ import Projects from '../pages/Projects'
      <Header />
 
        <Home/>
-       <Element name="About">
+        <Element name="About">
         <About/>
         </Element>
         <Element name="Skills">
