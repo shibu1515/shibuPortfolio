@@ -81,7 +81,7 @@ const Experience = () => {
                             <Grid item xs={12} md={8} >
                                 <Stack direction={{ xs: "column-reverse", md: "row" }} gap={{ md: 10, lg: 15 }}>
                                     <Typography variant='h2' className="h2-variant" mt={{ xs: 1, md: "unset" }} ml={{ xs: 0, md: 2 }} data-aos="zoom-in">Frontend Developer</Typography>
-                                    <Typography variant="h6" className="h6-variant" mt={{ xs: 1, md: "unset" }} ml={{ xs: 0, md: "unset" }}data-aos="zoom-in">Dec 2021 - Sep 2022</Typography>
+                                    <Typography variant="h6" className="h6-variant" mt={{ xs: 1, md: "unset" }} ml={{ xs: 0, md: "unset" }}data-aos="zoom-in">Sep 2020 - Sep 2022</Typography>
                                 </Stack>
                                 <Box paddingRight={{ md: 16, lg: 20 }}>
                                     <ul className='ul-experience'>
